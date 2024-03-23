@@ -1,4 +1,170 @@
+<<<<<<< HEAD
 ï»¿#define  _CRT_SECURE_NO_WARNINGS
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+#define  _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include "linkedList.h"
+
+//void Add(LinkedList current)
+//{
+//    current = (LinkedList)malloc(sizeof(LNode));
+//    current->data = current->data + 1;
+//}
+void visit(ElemType e) {//²âÊÔ
+    printf("%d ", e+1);
+}
+
+void printLink(struct LNode* L) {   //´òÓ¡Á´±í£¬±ãÓÚ¼ì²é
+    if (L == NULL)  //Á´±íÎª¿ÕµÄ´òÓ¡
+    {
+        printf("NULL\n");
+        return;
+    }
+    
+    printf("Á´±íÈçÏÂ£º\n");//Á´±í·Ç¿ÕµÄ´òÓ¡
+    LNode* p = L->next;
+    while (p != NULL)
+    {
+        printf("%d->\t", p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+}
+
+struct LNode* createLinkedList(void) {
+    LinkedList L = NULL;//struct LNode* L
+    if (InitList(&L) != SUCCESS) {  // ³õÊ¼»¯Á´±í£¬Èç¹ûÊ§°ÜÔò·µ»Ø¿Õ
+        printf("ERROR");
+        return NULL;
+    }
+
+    //´´½¨Ò»¸ö¹Ì¶¨³¤¶È¹Ì¶¨Êý¾ÝµÄÁ´±í
+    int i = 0;
+    LNode* p = L;
+    LNode* newNode;
+    while (i<5) {
+         newNode = (LNode*)malloc(sizeof(LNode));
+        if (!newNode) {
+            printf("ÄÚ´æ·ÖÅäÊ§°Ü\n");
+            break;
+        }
+
+        newNode->data = i;
+        newNode->next = NULL;
+
+        p->next = newNode;
+        p = p->next;
+        i++;
+    }
+
+    printf("SUCCESS\n");
+    printLink(L);
+    return L;  // ·µ»Ø´´½¨ºÃµÄÁ´±í
+}
+
+int main()
+{
+    struct LNode* L = NULL;
+    struct LNode* p = NULL;    //ÓÃÓÚÊµÏÖInsertListµÄÁ½¸ö½Úµã
+    struct LNode* q = NULL;
+    q = (struct LNode*)malloc(sizeof(LNode));
+    int *e = (int*)malloc(2*sizeof(int));  //ÓÃÓÚÈ·ÈÏDeleteListÊÇ·ñ³É¹¦¸³Öµ
+
+    printf("1.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄInitList"); 
+        L=createLinkedList();   //½¨Á¢Á´±í²¢³õÊ¼»¯²¢´òÓ¡
+        if (L != NULL) {
+            printf("InitList³É¹¦\n");
+        }
+
+
+    printf("\n2.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄDestroyList\n");
+        DestroyList(&L);    //´Ý»ÙÁ´±í²¢´òÓ¡È·ÈÏ
+        printLink(L);   //´òÓ¡ÑéÖ¤ÊÇ·ñ²åÈë
+        if (L == NULL) {
+            printf("DestroyList³É¹¦\n");
+        }
+
+
+    printf("\n3.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄInsertList");
+        L=createLinkedList();   //½¨Á¢Á´±í²¢³õÊ¼»¯²¢´òÓ¡
+        p = L->next;    //×Ô¶¨ÒåpµÄµãÎªÍ·½áµãºóÒ»Î»
+        q->data = 10;   //×Ô¶¨ÒåqµÄÖµ£¨³õÊ¼»¯½Úµãq£©
+        q->next = NULL;
+        InsertList(p,q);
+        printLink(L);   //´òÓ¡ÑéÖ¤ÊÇ·ñ²åÈë
+        if (L->next->next->data == q->data) {
+            printf("InsertList³É¹¦\n");
+        }
+
+
+    printf("\n4.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄDeleteList\n");
+        int flg = q->data;
+        DeleteList(L->next, e);   //½«q½ÚµãÉ¾È¥ÑéÖ¤DeleteList
+        printLink(L);
+        printf("e=%d", *e);
+        if (*e == flg) {
+            printf("\nDeleteList³É¹¦\n");
+        }
+
+
+
+    printf("\n5.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄTraverseList\n");
+        TraverseList(L, visit);
+
+
+    printf("\n6.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄSearchListt\n");
+        printf("¼ÙÉè²éÕÒÊý×Ö1ºÍ99\n");
+        if (SearchList(L, 1) == SUCCESS|| SearchList(L, 99)==ERROR) {
+            printf("\nSearchListt³É¹¦£¡\n");
+        }
+
+    
+    //printf("\n7.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄReverseList\n");
+    //if (ReverseList(&L) == SUCCESS) {
+    //    printf("ÄæÖÃ³É¹¦");
+    //    printLink(L);
+    //}
+    //else {
+    //    printf("ÄæÖÃÊ§°Ü");
+    //}
+
+
+
+   printf("\n8.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄIsLoopList\n"); 
+       if (IsLoopList(L) == ERROR) {
+           printf("\nÎÞÑ­»·\n");
+           printf("IsLoopList³É¹¦\n");
+       }else {
+           printf("\nÓÐÑ­»·\n");
+           printf("IsLoopList³É¹¦\n");
+   }
+
+       
+   /*printf("\n9.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄReverseEvenList\n");
+        ReverseEvenList(&L);
+        printLink(L);*/
+   
+   
+       printf("\n10.ÏÂÃæ¿ªÊ¼²âÊÔÍ·ÎÄ¼þµÄFindMidNode\n");
+       printLink(L);
+       struct LNode* temp = FindMidNode(&L);
+       if (temp->data == 2) {
+           printf("\nFindMidNode³É¹¦\n");
+       }
+   
+   
+   
+   return 0;
+}
+=======
+#define  _CRT_SECURE_NO_WARNINGS
+=======
+ï»¿#define  _CRT_SECURE_NO_WARNINGS
+>>>>>>> 580d798 (homework 3.23new)
+>>>>>>> newbranch
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedList.h"
@@ -154,3 +320,7 @@ int main()
        getchar();
    return 0;
 }
+<<<<<<< HEAD
+=======
+>>>>>>> 9cd57e0 (commit)
+>>>>>>> newbranch
