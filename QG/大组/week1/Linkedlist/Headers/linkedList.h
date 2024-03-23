@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma once
 /***************************************************************************************
  *	File Name				:	linkedList.h
@@ -145,6 +146,9 @@ LNode* FindMidNode(LinkedList* L);
 #endif
 =======
 #pragma once
+=======
+﻿#pragma once
+>>>>>>> 580d798 (homework 3.23new)
 /***************************************************************************************
  *	File Name				:	linkedList.h
  *	CopyRight				:	2020 QG Studio
