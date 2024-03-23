@@ -1,26 +1,26 @@
-#include "duLinked.h"
+ï»¿#include "duLinked.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 void printList(DuLNode* head) {
-	//´òÓ¡Á´±í±ãÓÚ¼ì²é
-	printf("ÏÂÃæÊÇË«ÏòÁ´±í:\n");
+	//æ‰“å°é“¾è¡¨ä¾¿äºæ£€æŸ¥
+	printf("ä¸‹é¢æ˜¯åŒå‘é“¾è¡¨:\n");
 	//if (head == NULL || head->next == NULL) {
-	//	printf("Á´±íÎª¿Õ\n");
+	//	printf("é“¾è¡¨ä¸ºç©º\n");
 	//	return;
 	//}
-	DuLNode* current = head->next; // ´ÓÍ·½áµãµÄÏÂÒ»¸ö½Úµã¿ªÊ¼±éÀú
+	DuLNode* current = head->next; // ä»å¤´ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å¼€å§‹éå†
 	while (current != NULL) {
 		printf("%d -> ", current->data);
 		current = current->next;
 	}
-	printf("½áÊø\n");
+	printf("ç»“æŸ\n");
 }
 
 void valuesToDuLinkedList(DuLNode* head) {
 	DuLNode* current = head;
 
-	// ÎªÁ´±í½Úµã¸³Öµ
+	// ä¸ºé“¾è¡¨èŠ‚ç‚¹èµ‹å€¼
 	for (int i = 0; i < 5; i++) {
 		DuLNode* newNode = (DuLNode*)malloc(sizeof(DuLNode));
 		newNode->data = (i+1);
@@ -30,7 +30,7 @@ void valuesToDuLinkedList(DuLNode* head) {
 		current = newNode;
 	}
 
-	// ÉèÖÃ×îºóÒ»¸ö½ÚµãµÄÇ°ÇıÖ¸Õë
+	// è®¾ç½®æœ€åä¸€ä¸ªèŠ‚ç‚¹çš„å‰é©±æŒ‡é’ˆ
 	current->next = NULL;
 }
 
@@ -40,25 +40,25 @@ void visit(int n) {
 
 int main() 
 {
-	DuLNode* L = NULL;//Í·½áµã
-	DuLNode* q = (DuLNode * )malloc(sizeof(DuLNode));//ÓÃÓÚ²âÊÔÇ°²åÈë¹¦ÄÜµÄ½Úµã
+	DuLNode* L = NULL;//å¤´ç»“ç‚¹
+	DuLNode* q = (DuLNode * )malloc(sizeof(DuLNode));//ç”¨äºæµ‹è¯•å‰æ’å…¥åŠŸèƒ½çš„èŠ‚ç‚¹
 	q->data = 2616;
 	q->next = NULL;
 	q->prior = NULL;
 
-	DuLNode* p = (DuLNode*)malloc(sizeof(DuLNode));//ÓÃÓÚ²âÊÔºó²åÈë¹¦ÄÜµÄ½Úµã
+	DuLNode* p = (DuLNode*)malloc(sizeof(DuLNode));//ç”¨äºæµ‹è¯•åæ’å…¥åŠŸèƒ½çš„èŠ‚ç‚¹
 	p->data = 2518;
 	p->next = NULL;
 	p->prior = NULL;
 	
 	int e=-1;
 	
-	printf("1.²âÊÔ³õÊ¼»¯Ë«ÏòÁ´±íInitList_DuL\n");
+	printf("1.æµ‹è¯•åˆå§‹åŒ–åŒå‘é“¾è¡¨InitList_DuL\n");
 	if (InitList_DuL(&L) == SUCCESS) {
-		printf("InitList_DuL³É¹¦\n");
+		printf("InitList_DuLæˆåŠŸ\n");
 	}
 	else {
-		printf("Ê§°Ü\n");
+		printf("å¤±è´¥\n");
 	}
 
 
@@ -66,57 +66,58 @@ int main()
 	printList(L);
 
 
-	printf("\n2.²âÊÔÉ¾³ıË«ÏòÁ´±íDestroyList_DuL\n");
+	printf("\n2.æµ‹è¯•åˆ é™¤åŒå‘é“¾è¡¨DestroyList_DuL\n");
 	DestroyList_DuL(&L);
 	if (L) {
-		printf("DestroyList_DuL³É¹¦\n"); 
+		printf("DestroyList_DuLæˆåŠŸ\n"); 
 	}
 	else {
-		printf("Ê§°Ü\n");
+		printf("å¤±è´¥\n");
 	}
 
 
-	printf("\n3.²âÊÔ²åÈëË«ÏòÁ´±íInsertBeforeList_DuL\n");
-	InitList_DuL(&L);	//É¾³ıÁ´±íºóÖØĞÂ´´½¨Á´±í²¢¸³Öµ
+	printf("\n3.æµ‹è¯•æ’å…¥åŒå‘é“¾è¡¨InsertBeforeList_DuL\n");
+	InitList_DuL(&L);	//åˆ é™¤é“¾è¡¨åé‡æ–°åˆ›å»ºé“¾è¡¨å¹¶èµ‹å€¼
 	valuesToDuLinkedList(L);	
 	printList(L);
 
 	InsertBeforeList_DuL(L->next->next, q);
 	if (L) {
-		printf("InsertBeforeList_DuL³É¹¦\n");
+		printf("InsertBeforeList_DuLæˆåŠŸ\n");
 		printList(L);
 	}
 	else {
-		printf("Ê§°Ü\n");
+		printf("å¤±è´¥\n");
 	}
 
 
-	printf("\n4.²âÊÔ²åÈëË«ÏòÁ´±íInsertAfterList_DuL\n");
+	printf("\n4.æµ‹è¯•æ’å…¥åŒå‘é“¾è¡¨InsertAfterList_DuL\n");
 	InsertAfterList_DuL(L->next->next, p);
 	if (L->next) {
-		printf("InsertAfterList_DuL³É¹¦\n");
+		printf("InsertAfterList_DuLæˆåŠŸ\n");
 		printList(L);
 	}
 	else {
-		printf("Ê§°Ü\n");
+		printf("å¤±è´¥\n");
 	}
 
 
-	printf("\n5.²âÊÔÉ¾³ıË«ÏòÁ´±í½ÚµãDeleteList_DuLL\n");
+	printf("\n5.æµ‹è¯•åˆ é™¤åŒå‘é“¾è¡¨èŠ‚ç‚¹DeleteList_DuLL\n");
 	DeleteList_DuL(L,&e);
 	if (e!=-1) {
-		printf("DeleteList_DuLL³É¹¦\n");
+		printf("DeleteList_DuLLæˆåŠŸ\n");
 		printList(L);
 		printf("e=%d\n", e);
 	}
 	else {
-		printf("Ê§°Ü\n");
+		printf("å¤±è´¥\n");
 	}
 
 
-	printf("\n5.²âÊÔÉ¾³ıË«ÏòÁ´±í½ÚµãTraverseList_DuL\n");
+	printf("\n5.æµ‹è¯•åˆ é™¤åŒå‘é“¾è¡¨èŠ‚ç‚¹TraverseList_DuL\n");
 	TraverseList_DuL(L, visit);
 	printList(L);
 
+	getchar();
 	return 0;
 }

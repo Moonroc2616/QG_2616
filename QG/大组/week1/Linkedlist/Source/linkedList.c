@@ -1,4 +1,4 @@
-#include "linkedList.h"
+ï»¿#include "linkedList.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,170 +6,170 @@
 #define LINKEDLIST_C_INCLUDED
 
 Status InitList(LinkedList* L) {
-    printf("\nµ÷ÓÃLinkedListÖĞ\n");
+    printf("\nè°ƒç”¨LinkedListä¸­\n");
     LNode* curr = (LinkedList)malloc(sizeof(LNode));
     curr->next = NULL;
 
-    *L = curr; // ·ÖÅäÍ·½áµã¿Õ¼ä
+    *L = curr; // åˆ†é…å¤´ç»“ç‚¹ç©ºé—´
     if ((*L) == NULL) {
-        return ERROR;  // ÄÚ´æ·ÖÅäÊ§°Ü
+        return ERROR;  // å†…å­˜åˆ†é…å¤±è´¥
     }
 
-    return SUCCESS;  // ³õÊ¼»¯³É¹¦
+    return SUCCESS;  // åˆå§‹åŒ–æˆåŠŸ
 }
 
 
 void DestroyList(LinkedList* L) {
-    printf("¿ªÊ¼µ÷ÓÃDestroyList\n");
+    printf("å¼€å§‹è°ƒç”¨DestroyList\n");
     if ((*L) == NULL) {
-        printf("\nÁ´±í×ÔÎª¿Õ");  //Á´±íÎª¿ÕµÄÇé¿ö
+        printf("\né“¾è¡¨è‡ªä¸ºç©º");  //é“¾è¡¨ä¸ºç©ºçš„æƒ…å†µ
         return;
     }
 
-    LinkedList current = *L;  // µ±Ç°½ÚµãÖ¸Õë
-    LinkedList currentNext=NULL;  // ÏÂÒ»¸ö½ÚµãÖ¸Õë
+    LinkedList current = *L;  // å½“å‰èŠ‚ç‚¹æŒ‡é’ˆ
+    LinkedList currentNext=NULL;  // ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡é’ˆ
 
     while (current != NULL) {
-        currentNext = current->next;  // ±£´æÏÂÒ»¸ö½ÚµãÖ¸Õë
-        free(current);          // ÊÍ·Åµ±Ç°½ÚµãÄÚ´æ
-        current = currentNext;  // ÒÆ¶¯µ½ÏÂÒ»¸ö½Úµã
+        currentNext = current->next;  // ä¿å­˜ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡é’ˆ
+        free(current);          // é‡Šæ”¾å½“å‰èŠ‚ç‚¹å†…å­˜
+        current = currentNext;  // ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
         
     }
-    *L = NULL;  // Í·Ö¸ÕëÖÃ¿Õ
-    printf("Á´±íÒÑÏú»Ù\n");
+    *L = NULL;  // å¤´æŒ‡é’ˆç½®ç©º
+    printf("é“¾è¡¨å·²é”€æ¯\n");
 }
 
 Status InsertList(LNode* p, LNode* q) {
-    printf("¿ªÊ¼µ÷ÓÃInsertList");
-    q->next = p->next;  //pÁ¬½ÓqµÄºóÒ»Î» 
-    p->next = q;    //ÔÙÈÃpÁ´½ÓÖÁq                   
+    printf("å¼€å§‹è°ƒç”¨InsertList");
+    q->next = p->next;  //pè¿æ¥qçš„åä¸€ä½ 
+    p->next = q;    //å†è®©pé“¾æ¥è‡³q                   
 }
 
 //Status DeleteList(LNode* p, ElemType* e) {
-//    printf("¿ªÊ¼µ÷ÓÃDeleteList");
-//    LinkedList current = p;  // µ±Ç°½ÚµãÖ¸Õë
-//    LinkedList currentNext=current->next;  // ÏÂÒ»¸ö½ÚµãÖ¸Õë
+//    printf("å¼€å§‹è°ƒç”¨DeleteList");
+//    LinkedList current = p;  // å½“å‰èŠ‚ç‚¹æŒ‡é’ˆ
+//    LinkedList currentNext=current->next;  // ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡é’ˆ
 //
-//    e = currentNext->data;  //½«pºóÒ»Î»µÄdata¸³Öµ¸øe
-//    current = currentNext->next;    //Á´½ÓÖÁpºóµÚ¶şÎ»
-//    free(currentNext);  //ÊÍ·ÅpºóÒ»Î»
+//    e = currentNext->data;  //å°†påä¸€ä½çš„dataèµ‹å€¼ç»™e
+//    current = currentNext->next;    //é“¾æ¥è‡³påç¬¬äºŒä½
+//    free(currentNext);  //é‡Šæ”¾påä¸€ä½
 //}
 Status DeleteList(LNode* p, ElemType* e) {
     if (p == NULL || p->next == NULL) {
-        return ERROR; // ½ÚµãÎª¿Õ»òÕßpÊÇ×îºóÒ»¸ö½Úµã£¬ÎŞ·¨É¾³ı
+        return ERROR; // èŠ‚ç‚¹ä¸ºç©ºæˆ–è€…pæ˜¯æœ€åä¸€ä¸ªèŠ‚ç‚¹ï¼Œæ— æ³•åˆ é™¤
     }
-    LinkedList currentNext = p->next;  // ÒªÉ¾³ıµÄ½Úµã
-    *e = currentNext->data;  // ½«ÒªÉ¾³ı½ÚµãµÄÊı¾İ¸³Öµ¸øe
-    printf("É¾È¥£º%d\n", currentNext->data);
-    p->next = currentNext->next;  // É¾³ı½Úµã£¬ĞŞ¸ÄpµÄnextÖ¸Õë
-    free(currentNext);  // ÊÍ·ÅÉ¾³ıµÄ½ÚµãÄÚ´æ
+    LinkedList currentNext = p->next;  // è¦åˆ é™¤çš„èŠ‚ç‚¹
+    *e = currentNext->data;  // å°†è¦åˆ é™¤èŠ‚ç‚¹çš„æ•°æ®èµ‹å€¼ç»™e
+    printf("åˆ å»ï¼š%d\n", currentNext->data);
+    p->next = currentNext->next;  // åˆ é™¤èŠ‚ç‚¹ï¼Œä¿®æ”¹pçš„nextæŒ‡é’ˆ
+    free(currentNext);  // é‡Šæ”¾åˆ é™¤çš„èŠ‚ç‚¹å†…å­˜
 
     return SUCCESS;
 }
 
 
 void TraverseList(LinkedList L, void (*visit)(ElemType e)) {
-    printf("¿ªÊ¼µ÷ÓÃTraverseList");
-    LinkedList current = L->next;     //µ±Ç°Ö¸Õë
+    printf("å¼€å§‹è°ƒç”¨TraverseList");
+    LinkedList current = L->next;     //å½“å‰æŒ‡é’ˆ
     printf("\n");
     while (current!= NULL) {
-        visit(current->data);   //µ÷ÓÃº¯Êı
-        current = current->next;    //¼ÌĞø±éÀúÁ´±í
+        visit(current->data);   //è°ƒç”¨å‡½æ•°
+        current = current->next;    //ç»§ç»­éå†é“¾è¡¨
     }
-    printf("\nTraverseList³É¹¦\n");
+    printf("\nTraverseListæˆåŠŸ\n");
 }
 
 Status SearchList(LinkedList L, ElemType e) {
-    printf("¿ªÊ¼µ÷ÓÃSearchList");
-    LinkedList current = L;     //µ±Ç°Ö¸Õë
+    printf("å¼€å§‹è°ƒç”¨SearchList");
+    LinkedList current = L;     //å½“å‰æŒ‡é’ˆ
 
     while (current != NULL) {
         if (current->data == e) {           
             return SUCCESS;
         }
-        current = current->next;    //¼ÌĞø±éÀúÁ´±í
+        current = current->next;    //ç»§ç»­éå†é“¾è¡¨
     }
     return ERROR;
 }
 
 Status ReverseList(LinkedList* L) {
-    printf("¿ªÊ¼µ÷ÓÃReverseList");
+    printf("å¼€å§‹è°ƒç”¨ReverseList");
     if (*L == NULL) {
-        printf("\nÁ´±íÎª¿Õ\n");
+        printf("\né“¾è¡¨ä¸ºç©º\n");
         return SUCCESS;
     }
 
-         LNode*  prev = *L;     //Ç°Ò»¸ö½Úµã
-         LNode* current = (*L)->next;     //µ±Ç°½Úµã
+         LNode*  prev = *L;     //å‰ä¸€ä¸ªèŠ‚ç‚¹
+         LNode* current = (*L)->next;     //å½“å‰èŠ‚ç‚¹
         //current = (struct LNode*)malloc(sizeof(LNode));
-         LNode* currentNext=(*L)->next->next;//ÏÂÒ»¸ö½Úµã
+         LNode* currentNext=(*L)->next->next;//ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
        // currentNext = (struct LNode*)malloc(sizeof(LNode));
 
         while (current != NULL) {
-            currentNext = current->next; // ±£´æµ±Ç°½ÚµãµÄÏÂÒ»¸ö½Úµã
-            current->next = prev; // ½«µ±Ç°½ÚµãÖ¸ÏòÇ°Ò»¸ö½Úµã
-            prev = current; // ¸üĞÂÇ°Ò»¸ö½ÚµãÎªµ±Ç°½Úµã
-            current = currentNext; // ¸üĞÂµ±Ç°½ÚµãÎªÏÂÒ»¸ö½Úµã
+            currentNext = current->next; // ä¿å­˜å½“å‰èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+            current->next = prev; // å°†å½“å‰èŠ‚ç‚¹æŒ‡å‘å‰ä¸€ä¸ªèŠ‚ç‚¹
+            prev = current; // æ›´æ–°å‰ä¸€ä¸ªèŠ‚ç‚¹ä¸ºå½“å‰èŠ‚ç‚¹
+            current = currentNext; // æ›´æ–°å½“å‰èŠ‚ç‚¹ä¸ºä¸‹ä¸€ä¸ªèŠ‚ç‚¹
         }
 
-        *L = prev; // ¸üĞÂÁ´±íÍ·½Úµã
+        *L = prev; // æ›´æ–°é“¾è¡¨å¤´èŠ‚ç‚¹
 
         return SUCCESS;
     }
 
 Status IsLoopList(LinkedList L) {
-    printf("¿ªÊ¼µ÷ÓÃIsLoopList");
+    printf("å¼€å§‹è°ƒç”¨IsLoopList");
         if (L == NULL || L->next == NULL) {
-            return ERROR; // ´¦Àí¿ÕÁ´±í»òÖ»ÓĞÒ»¸ö½ÚµãµÄÇé¿ö£¬¿Ï¶¨²»´æÔÚÑ­»·
+            return ERROR; // å¤„ç†ç©ºé“¾è¡¨æˆ–åªæœ‰ä¸€ä¸ªèŠ‚ç‚¹çš„æƒ…å†µï¼Œè‚¯å®šä¸å­˜åœ¨å¾ªç¯
         }
 
         LinkedList slow = L;
         LinkedList fast = L;
 
         while (fast != NULL && fast->next != NULL) {
-            slow = slow->next;           // ÂıÖ¸ÕëÃ¿´ÎÒÆ¶¯Ò»¸ö½Úµã
-            fast = fast->next->next;     // ¿ìÖ¸ÕëÃ¿´ÎÒÆ¶¯Á½¸ö½Úµã
+            slow = slow->next;           // æ…¢æŒ‡é’ˆæ¯æ¬¡ç§»åŠ¨ä¸€ä¸ªèŠ‚ç‚¹
+            fast = fast->next->next;     // å¿«æŒ‡é’ˆæ¯æ¬¡ç§»åŠ¨ä¸¤ä¸ªèŠ‚ç‚¹
 
             if (slow == fast) {
-                return SUCCESS;  // ¿ìÂıÖ¸ÕëÏàÓö£¬´æÔÚÑ­»·
+                return SUCCESS;  // å¿«æ…¢æŒ‡é’ˆç›¸é‡ï¼Œå­˜åœ¨å¾ªç¯
             }
         }
 
-        return ERROR; // ¿ìÖ¸ÕëÏÈµ½´ïÁ´±íÎ²²¿£¬²»´æÔÚÑ­»·
+        return ERROR; // å¿«æŒ‡é’ˆå…ˆåˆ°è¾¾é“¾è¡¨å°¾éƒ¨ï¼Œä¸å­˜åœ¨å¾ªç¯
     }
 
-LNode* ReverseEvenList(LinkedList* L) {
-    printf("¿ªÊ¼µ÷ÓÃReverseEvenList");
-    
-    LinkedList current = *L)->next;
-    current = (LinkedList)malloc(sizeof(LNode));
-    LinkedList prve = current->next;
-
-    while (current != NULL &&current->next!=NULL) {
-        prve = current;
-        current = current->next;
-
-        if (current->data % 2 == 0) {   //ÅĞ¶ÏÊÇ·ñÊÇÅ¼Êı
-            prve->next=current->next;    //ÓëÇ°Ò»Î»½ÚµãÌæ»»Î»ÖÃ
-            current->next = prve;
-            prve = current;     //È·±£prveºÍcurrÔÚÍ¬Ò»Î»ÖÃ
-        }
-    }
-}
+//LNode* ReverseEvenList(LinkedList* L) {
+//    printf("å¼€å§‹è°ƒç”¨ReverseEvenList");
+//    
+//    LinkedList current = *L->next;
+//    current = (LinkedList)malloc(sizeof(LNode));
+//    LinkedList prve = current->next;
+//
+//    while (current != NULL &&current->next!=NULL) {
+//        prve = current;
+//        current = current->next;
+//
+//        if (current->data % 2 == 0) {   //åˆ¤æ–­æ˜¯å¦æ˜¯å¶æ•°
+//            prve->next=current->next;    //ä¸å‰ä¸€ä½èŠ‚ç‚¹æ›¿æ¢ä½ç½®
+//            current->next = prve;
+//            prve = current;     //ç¡®ä¿prveå’Œcurråœ¨åŒä¸€ä½ç½®
+//        }
+//    }
+//}
 
 
 LNode* FindMidNode(LinkedList* L) {
-    printf("¿ªÊ¼µ÷ÓÃFindMidNode");
+    printf("å¼€å§‹è°ƒç”¨FindMidNode");
     if ((*L) == NULL || (*L)->next == NULL) {
-        return (*L); // ´¦Àí¿ÕÁ´±í»òÖ»ÓĞÒ»¸ö½ÚµãµÄÇé¿ö
+        return (*L); // å¤„ç†ç©ºé“¾è¡¨æˆ–åªæœ‰ä¸€ä¸ªèŠ‚ç‚¹çš„æƒ…å†µ
     }
 
     LNode* slow = (*L);
     LNode* fast = (*L);
 
     while (fast != NULL) {
-        slow = slow->next;           // ÂıÖ¸ÕëÃ¿´ÎÒÆ¶¯Ò»¸ö½Úµã
-        fast = fast->next->next;     // ¿ìÖ¸ÕëÃ¿´ÎÒÆ¶¯Á½¸ö½Úµã
+        slow = slow->next;           // æ…¢æŒ‡é’ˆæ¯æ¬¡ç§»åŠ¨ä¸€ä¸ªèŠ‚ç‚¹
+        fast = fast->next->next;     // å¿«æŒ‡é’ˆæ¯æ¬¡ç§»åŠ¨ä¸¤ä¸ªèŠ‚ç‚¹
     }
 
     return slow;

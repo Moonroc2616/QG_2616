@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 /***************************************************************************************
  *	File Name				:	linkedList.h
  *	CopyRight				:	2020 QG Studio

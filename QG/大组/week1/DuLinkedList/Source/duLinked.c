@@ -1,4 +1,4 @@
-#include "duLinked.h"
+ï»¿#include "duLinked.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,7 +6,7 @@
 #define LINKEDLIST_C_INCLUDED
 
 Status InitList_DuL(DuLinkedList* L) {
-	//´´½¨Á´±í£¨´øÍ·½áµã£©
+	//åˆ›å»ºé“¾è¡¨ï¼ˆå¸¦å¤´ç»“ç‚¹ï¼‰
 	(*L) = (DuLNode*)malloc(sizeof(DuLNode));
 	if (!(*L)) {
 		return ERROR;
@@ -19,9 +19,9 @@ Status InitList_DuL(DuLinkedList* L) {
 
 
 void DestroyList_DuL(DuLinkedList* L){
-	//É¾³ýÁ´±í:´ÓÍ·µÄÏÂÒ»Î»¿ªÊ¼£¬ÀûÓÃtmpÁÙÊ±½ÚµãÉ¾È¥½ÚµãÖ±ÖÁÖ»Ê£Í·½áµã,×îºóÔÙÉ¾È¥Í·½áµã¼´¿É
+	//åˆ é™¤é“¾è¡¨:ä»Žå¤´çš„ä¸‹ä¸€ä½å¼€å§‹ï¼Œåˆ©ç”¨tmpä¸´æ—¶èŠ‚ç‚¹åˆ åŽ»èŠ‚ç‚¹ç›´è‡³åªå‰©å¤´ç»“ç‚¹,æœ€åŽå†åˆ åŽ»å¤´ç»“ç‚¹å³å¯
 	if (!(*L)) {
-		printf("Á´±íÎª¿Õ\n");
+		printf("é“¾è¡¨ä¸ºç©º\n");
 		return SUCCESS;
 	}
 	DuLNode* curr = (*L)->next;
@@ -38,26 +38,26 @@ void DestroyList_DuL(DuLinkedList* L){
 
 Status InsertBeforeList_DuL(DuLNode* p, DuLNode* q) {
 	if (p == NULL || q == NULL) {
-		return ERROR; // ·µ»Ø´íÎó×´Ì¬£¬Èç¹û½Úµã p »ò½Úµã q Îª¿Õ
+		return ERROR; // è¿”å›žé”™è¯¯çŠ¶æ€ï¼Œå¦‚æžœèŠ‚ç‚¹ p æˆ–èŠ‚ç‚¹ q ä¸ºç©º
 	}
 
-	DuLNode* prior_node = p->prior; // »ñÈ¡½Úµã p µÄÇ°Ò»¸ö½Úµã
+	DuLNode* prior_node = p->prior; // èŽ·å–èŠ‚ç‚¹ p çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
 	q->next = p;
 	q->prior = prior_node;
 	p->prior = q;
 	prior_node->next = q;
 
-	return SUCCESS; // ·µ»Ø³É¹¦×´Ì¬
+	return SUCCESS; // è¿”å›žæˆåŠŸçŠ¶æ€
 }
 
 
 Status InsertAfterList_DuL(DuLNode* p, DuLNode* q) {
-	//²åÈëÊý¾Ý£ºq²åÓÚpºó
+	//æ’å…¥æ•°æ®ï¼šqæ’äºŽpåŽ
 	if (p == NULL || q == NULL) {
-		return ERROR; // ·µ»Ø´íÎó×´Ì¬£¬Èç¹û½Úµã p »ò½Úµã q Îª¿Õ
+		return ERROR; // è¿”å›žé”™è¯¯çŠ¶æ€ï¼Œå¦‚æžœèŠ‚ç‚¹ p æˆ–èŠ‚ç‚¹ q ä¸ºç©º
 	}
 
-	DuLNode* Next_node = p->next; // »ñÈ¡½Úµã p µÄÇ°Ò»¸ö½Úµã
+	DuLNode* Next_node = p->next; // èŽ·å–èŠ‚ç‚¹ p çš„å‰ä¸€ä¸ªèŠ‚ç‚¹
 
 	if (Next_node != NULL) {
 		Next_node->prior = q;
@@ -67,21 +67,21 @@ Status InsertAfterList_DuL(DuLNode* p, DuLNode* q) {
 	q->prior = p;
 	p->next = q;
 
-	return SUCCESS; // ·µ»Ø³É¹¦×´Ì¬
+	return SUCCESS; // è¿”å›žæˆåŠŸçŠ¶æ€
 }
 
 
 Status DeleteList_DuL(DuLNode* p, ElemType* e) {
-	//É¾³ý½Úµã£ºÉ¾È¥pºóµÚÒ»¸ö½Úµã²¢°ÑËüµÄÖµ¸³¸øe
+	//åˆ é™¤èŠ‚ç‚¹ï¼šåˆ åŽ»påŽç¬¬ä¸€ä¸ªèŠ‚ç‚¹å¹¶æŠŠå®ƒçš„å€¼èµ‹ç»™e
 	if (p == NULL || p->next == NULL) {
-		return ERROR; // ·µ»Ø´íÎó×´Ì¬£¬Èç¹û½Úµã p »ò½Úµã p µÄºóÒ»¸ö½ÚµãÎª¿Õ
+		return ERROR; // è¿”å›žé”™è¯¯çŠ¶æ€ï¼Œå¦‚æžœèŠ‚ç‚¹ p æˆ–èŠ‚ç‚¹ p çš„åŽä¸€ä¸ªèŠ‚ç‚¹ä¸ºç©º
 	}
 
 	DuLNode* Next_node = p->next; 
 	//e = (DuLNode*)malloc(sizeof(DuLNode));
 	*e = Next_node->data;
 
-	p->next = Next_node->next;//ÊµÏÖÉ¾³ý
+	p->next = Next_node->next;//å®žçŽ°åˆ é™¤
 	Next_node->prior = NULL;
 	Next_node->next->prior = p;
 	Next_node->next = NULL;
@@ -91,7 +91,7 @@ Status DeleteList_DuL(DuLNode* p, ElemType* e) {
 
 
 void TraverseList_DuL(DuLinkedList L, void (*visit)(ElemType e)) {
-	//±ãÀûÁ´±í²¢¶ÔÃ¿Ò»¸ö½ÚµãÊý¾ÝÊ¹ÓÃº¯Êývisit()
+	//ä¾¿åˆ©é“¾è¡¨å¹¶å¯¹æ¯ä¸€ä¸ªèŠ‚ç‚¹æ•°æ®ä½¿ç”¨å‡½æ•°visit()
 	DuLinkedList curr = L->next;
 	while (curr->next != NULL) {
 		visit(curr->data);

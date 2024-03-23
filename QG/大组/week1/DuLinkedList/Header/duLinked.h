@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 /***************************************************************************************
  *	File Name				:	duLinkedList.h
  *	CopyRight				:	2020 QG Studio
